@@ -42,4 +42,14 @@ class ItemCardapio {
         return imposto;
     }
 
+    double calculaIposto(){
+        double imposto;
+        if(emPromocao){
+            imposto = precoComDesconto * 0.1;
+        }else{
+            imposto = preco * 0.1;
+        }
+        return imposto;
+    }
+
 }
