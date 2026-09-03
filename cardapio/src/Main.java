@@ -21,6 +21,7 @@ void main() {
         IO.println("Item não está em promoção");
     }
     IO.println("Categoria: " + itemSelecionado.obtemNomeCategoria());
+    IO.println("Imposto: " + itemSelecionado.calculaImposto());
 
     IO.println("-------");
 
