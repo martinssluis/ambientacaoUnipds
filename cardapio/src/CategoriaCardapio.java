@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
+enum CategoriaCardapio {
 
-public enum CategoriaCardapio {
+    ENTRADA, PRATOS_PRINCIPAIS, SOBREMESAS, BEBIDAS
 }
