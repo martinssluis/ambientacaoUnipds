@@ -5,7 +5,7 @@ public class ItemCardapioIsento extends ItemCardapio{
     }
 
     @Override
-    double calculaIposto() {
+    double calculaImposto() {
         return 0.0;
     }
 }
