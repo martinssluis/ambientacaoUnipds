@@ -19,7 +19,7 @@ class Cardapio {
         item4.definePromocao(3.99);
 
         ItemCardapio item5 = new ItemCardapio(5L, "Água de Jamaica",
-                "Água aromatizada com hibisco e toque de açúcar.", 2.5, CategoriaCardapio.PRATOS_PRINCIPAIS);
+                "Água aromatizada com hibisco e toque de açúcar.", 2.5, CategoriaCardapio.BEBIDAS);
         item5.definePromocao(2.0);
 
         ItemCardapio item6 = new ItemCardapioIsento(6L, "Churros do Chaves",
