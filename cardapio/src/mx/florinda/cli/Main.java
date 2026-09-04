@@ -1,5 +1,6 @@
 import mx.florinda.modelo.Cardapio;
 import mx.florinda.modelo.ItemCardapio;
+import mx.florinda.modelo.Restaurante;
 
 void main() {
 
@@ -42,5 +43,9 @@ void main() {
             IO.println("Preço menor que " + precoLimite + ": " + item.getPreco());
         }
     }
+
+    Restaurante vicosa = new Restaurante("Viçosa", "Rodoviária");
+
+    IO.println(vicosa.getNome() + " unidade " +vicosa.getEndereco());
 
 }
