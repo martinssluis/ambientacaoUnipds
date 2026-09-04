@@ -23,6 +23,11 @@ void main() {
     IO.println("Categoria: " + itemSelecionado.obtemNomeCategoria());
     IO.println("Imposto: " + itemSelecionado.calculaImposto());
 
+    if (itemSelecionado instanceof ItemCardapioSemGluten semGluten) {
+        IO.println(semGluten.ehSemGluten());
+        IO.println("Este item não contém glúten.");
+    }
+
     IO.println("-------");
 
     IO.println("Soma dos preços: " + cardapio.obtemSomaDosPrecos());
