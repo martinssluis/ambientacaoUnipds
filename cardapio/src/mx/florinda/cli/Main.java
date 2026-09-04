@@ -44,8 +44,8 @@ void main() {
         }
     }
 
-    Restaurante vicosa = new Restaurante("Viçosa", "Rodoviária");
+    Restaurante vicosa = new Restaurante("Viçosa", "Rodoviária", cardapio);
 
-    IO.println(vicosa.getNome() + " unidade " +vicosa.getEndereco());
+    IO.println(vicosa.getNome() + " unidade " +vicosa.getEndereco() + "e o cardapio é: " + vicosa.getCardapio());
 
 }
