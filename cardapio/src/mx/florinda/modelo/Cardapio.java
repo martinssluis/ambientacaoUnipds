@@ -1,5 +1,7 @@
 package mx.florinda.modelo;
 
+import java.util.Arrays;
+
 public class Cardapio {
 
     private ItemCardapio[] itens;
@@ -78,4 +80,10 @@ public class Cardapio {
         return itens;
     }
 
+    @Override
+    public String toString() {
+        return "Cardapio{" +
+                "itens=" + Arrays.toString(itens) +
+                '}';
+    }
 }
