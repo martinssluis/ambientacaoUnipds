@@ -3,7 +3,7 @@ class Cardapio {
     ItemCardapio[] itens;
 
     Cardapio() {
-        ItemCardapio item1 = new ItemCardapio(1L, "Refresco do Chaves",
+        ItemCardapio item1 = new ItemCardapioBebida(1L, "Refresco do Chaves",
                 "Suco de limão que parece de tamarindo e tem gosto de groselha.", 2.99, CategoriaCardapio.BEBIDAS);
 
         ItemCardapio item2 = new ItemCardapio(2L, "Sanduíche de Presunto do Chaves",
