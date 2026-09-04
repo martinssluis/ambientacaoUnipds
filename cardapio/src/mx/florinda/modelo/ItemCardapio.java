@@ -71,4 +71,17 @@ public class ItemCardapio {
     public CategoriaCardapio getCategoria() {
         return categoria;
     }
+
+    @Override
+    public String toString() {
+        return "ItemCardapio{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", emPromocao=" + emPromocao +
+                ", preco=" + preco +
+                ", precoComDesconto=" + precoComDesconto +
+                ", categoria=" + categoria +
+                '}';
+    }
 }
