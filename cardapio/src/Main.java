@@ -25,18 +25,6 @@ void main() {
 
     IO.println("-------");
 
-    double[] precos = new double[7];
-
-    precos[0] = 2.99;
-    precos[1] = 3.50;
-    precos[2] = 12.99;
-    precos[3] = 4.99;
-    precos[4] = 2.50;
-    precos[5] = 4.99;
-    precos[6] = 25.90;
-
-    boolean[] emPromocao = { false, true, true, true, true, true, false };
-
     IO.println("Soma dos preços: " + cardapio.obtemSomaDosPrecos());
     IO.println("Total de itens em promoção: " + cardapio.obtemTotalDeItensEmPromocao());
 
@@ -49,7 +37,6 @@ void main() {
     for (ItemCardapio item : cardapio.itens) {
         if (item.preco <= precoLimite) {
             IO.println("Preço menor que " + precoLimite + ": " + item.preco);
-            continue;
         }
     }
 
