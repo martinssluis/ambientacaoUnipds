@@ -1,3 +1,5 @@
+package mx.florinda.modelo;
+
 public class ItemCardapioIsento extends ItemCardapio{
 
     public ItemCardapioIsento(long id, String nome, String descricao, double preco, CategoriaCardapio categoria) {
@@ -5,7 +7,7 @@ public class ItemCardapioIsento extends ItemCardapio{
     }
 
     @Override
-    double calculaImposto() {
+    public double getImposto() {
         return 0.0;
     }
 }
