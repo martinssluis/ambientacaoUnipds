@@ -1,0 +1,23 @@
+Digite um nome de arquivo de itens de cardapio[1.397s][error][attach] pipe write error (232)
+itens-cardapio.csv
+itens-cardapio.csv
+Digite um id de um item de cardápio: 3
+== Item do Cardápio ==
+Id: 3
+Nome: Torta de Frango da Dona Florinda
+Descrição: Torta de frango com recheio cremoso e massa crocante.
+Item em promoção! 🤑
+Preco: de 12.99 por 10.99
+Porcentagem de desconto: 15.396458814472672
+Categoria: PRATOS_PRINCIPAIS
+Imposto: 1.099
+-------
+Soma dos preços: 57.86
+Total de itens em promoção: 5
+O primeiro preço que é maior que 10.0: 12.99
+-------
+Preço menor que 10.0: 2.99
+Preço menor que 10.0: 3.5
+Preço menor que 10.0: 4.99
+Preço menor que 10.0: 2.5
+Preço menor que 10.0: 4.99
