@@ -2,48 +2,57 @@ package mx.florinda.modelo;
 
 import mx.florinda.modelo.isento.ItemCardapioIsento;
 
+import java.io.IO;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class Cardapio {
 
     private ItemCardapio[] itens;
 
-    public Cardapio() {
-        ItemCardapio item1 = new ItemCardapio(1L, "Refresco do Chaves",
-                "Suco de limão que parece de tamarindo e tem gosto de groselha.", 2.99, CategoriaCardapio.BEBIDAS);
+    public Cardapio(String nomeArquivo) throws IOException {
+        Path arquivo = Path.of(nomeArquivo);
+        String conteudoDoArquivo = Files.readString(arquivo);
+        String[] linhasArquivo = conteudoDoArquivo.split("\n");
 
-        ItemCardapio item2 = new ItemCardapio(2L, "Sanduíche de Presunto do Chaves",
-                "Sanduíche de presunto simples, mas feito com muito amor.", 3.50, CategoriaCardapio.PRATOS_PRINCIPAIS);
-        item2.setPromocao(2.99);
+        itens = new ItemCardapio[linhasArquivo.length];
 
-        ItemCardapio item3 = new ItemCardapio(3L, "Torta de Frango da Dona Florinda",
-                "Torta de frango com recheio cremoso e massa crocante.", 12.99, CategoriaCardapio.PRATOS_PRINCIPAIS);
-        item3.setPromocao(10.99);
+        for (int i = 0; i < linhasArquivo.length; i++) {
+            String linha = linhasArquivo[i];
+            if (nomeArquivo.endsWith(".csv")) {
+                //trato o csv
 
-        ItemCardapio item4 = new ItemCardapioIsento(4L, "Pipoca do Quico",
-                "Balde de pipoca preparado com carinho pelo Quico.", 4.99, CategoriaCardapio.PRATOS_PRINCIPAIS);
-        item4.setPromocao(3.99);
+                String[] partes = linha.split(";");
+                long id = Long.parseLong(partes[0]);
+                String nome = partes[1];
+                String descricao = partes[2];
+                Double preco = Double.parseDouble(partes[3]);
+                CategoriaCardapio categoria = CategoriaCardapio.valueOf(partes[4]);
 
-        ItemCardapio item5 = new ItemCardapio(5L, "Água de Jamaica",
-                "Água aromatizada com hibisco e toque de açúcar.", 2.5, CategoriaCardapio.BEBIDAS);
-        item5.setPromocao(2.0);
 
-        ItemCardapio item6 = new ItemCardapioIsento(6L, "Churros do Chaves",
-                "Churros recheados com doce de leite, clássicos e irresistíveis.", 4.99, CategoriaCardapio.SOBREMESAS);
-        item6.setPromocao(3.99);
-
-        ItemCardapio item7 = new ItemCardapioIsento(7L, "Tacos de Carnitas",
-                "Tacos recheados com carne tenra", 25.9, CategoriaCardapio.PRATOS_PRINCIPAIS);
-
-        itens = new ItemCardapio[7];
-        itens[0] = item1;
-        itens[1] = item2;
-        itens[2] = item3;
-        itens[3] = item4;
-        itens[4] = item5;
-        itens[5] = item6;
-        itens[6] = item7;
+                ItemCardapio item;
+                boolean impostoIsento = Boolean.parseBoolean(partes[7]);
+                if (impostoIsento) {
+                    item = new ItemCardapioIsento(id, nome, descricao, preco, categoria);
+                } else {
+                    item = new ItemCardapio(id, nome, descricao, preco, categoria);
+                }
+                boolean emPromocao = Boolean.parseBoolean(partes[5]);
+                if (emPromocao) {
+                    double precoDesconto = Double.parseDouble(partes[6]);
+                    item.setPromocao(precoDesconto);
+                }
+                itens[i] = item;
+            } else if (nomeArquivo.endsWith(".json")) {
+                //trato o json
+            } else {
+                IO.println("Arquivo com extensão inválida: " + nomeArquivo);
+            }
+        }
     }
 
-    public double getSomaDosPrecos() {
+    public double getSomaDosPrecos () {
         double totalDePrecos = 0.0;
         for (ItemCardapio item : itens) {
             totalDePrecos += item.getPreco();
@@ -51,7 +60,7 @@ public class Cardapio {
         return totalDePrecos;
     }
 
-    public int getTotalDeItensEmPromocao() {
+    public int getTotalDeItensEmPromocao () {
         int totalItensEmPromocao = 0;
         for (ItemCardapio item : itens) {
             if (item.isEmPromocao()) {
@@ -61,7 +70,7 @@ public class Cardapio {
         return totalItensEmPromocao;
     }
 
-    public double getPrimeiroPrecoMaiorQueLimite(double precoLimite) {
+    public double getPrimeiroPrecoMaiorQueLimite ( double precoLimite){
         double precoMaiorQueLimite = -1.0;
         for (ItemCardapio item : itens) {
             if (item.getPreco() > precoLimite) {
@@ -72,11 +81,11 @@ public class Cardapio {
         return precoMaiorQueLimite;
     }
 
-    public ItemCardapio getItemPorId(long idSelecionado){
+    public ItemCardapio getItemPorId ( long idSelecionado){
         return itens[((int) idSelecionado) - 1];
     }
 
-    public ItemCardapio[] getItens(){
+    public ItemCardapio[] getItens () {
         return itens;
     }
 
