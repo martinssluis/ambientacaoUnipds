@@ -9,9 +9,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class LeitorItensCardapioJSON {
+public class LeitorItensCardapioJSON implements LeitorItensCardapio{
 
-    public ItemCardapio[] processaJSON(String nomeArquivo) throws IOException {
+    @Override
+    public ItemCardapio[] processaArquivo(String nomeArquivo) throws IOException {
 
         Path arquivo = Path.of(nomeArquivo);
         String conteudoDoArquivo = Files.readString(arquivo);
