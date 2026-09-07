@@ -45,7 +45,66 @@ public class Cardapio {
                 }
                 itens[i] = item;
             } else if (nomeArquivo.endsWith(".json")) {
-                //trato o json
+                //trato o json de maneira meia boca por enquanto
+
+                linha = linha.replace("[", "");
+                linha = linha.replace("]", "");
+                linha = linha.replace("{", "");
+                linha = linha.replace("}", "");
+                linha = linha.replace("\"", "");
+
+                String[] partes = linha.split(",");
+
+                String parteId = partes[0];
+                String[] propriedadeEValorId = parteId.split(":");
+                String valorId = propriedadeEValorId[1].trim();
+                long id = Long.parseLong(valorId);
+                IO.println(id);
+
+                String parteNome = partes[1];
+                String[] propriedadeEValorNome = parteNome.split(":");
+                String nome = propriedadeEValorNome[1].trim();
+
+                String parteDescricao = partes[2];
+                String[] propriedadeEValorDescricao = parteDescricao.split(":");
+                String descricao = propriedadeEValorDescricao[1].trim();
+
+                String partePreco = partes[3];
+                String[] propriedadeEValorPreco = partePreco.split(":");
+                String valorPreco = propriedadeEValorPreco[1].trim();
+                double preco = Double.parseDouble(valorPreco);
+
+                String parteCategoria = partes[4];
+                String[] propriedadeEValorCategoria = parteCategoria.split(":");
+                String valorCategoria = propriedadeEValorCategoria[1].trim();
+                CategoriaCardapio categoria = CategoriaCardapio.valueOf(valorCategoria);
+
+                ItemCardapio item;
+                String parteImpostoIsento = partes[7];
+                String[] propriedadeEValorImpostoIsento = parteImpostoIsento.split(":");
+                String valorImpostoIsento = propriedadeEValorImpostoIsento[1].trim();
+                boolean impostoIsento = Boolean.parseBoolean(valorImpostoIsento);
+                if (impostoIsento) {
+                    item = new ItemCardapioIsento(id, nome, descricao, preco, categoria);
+                } else {
+                    item = new ItemCardapio(id, nome, descricao, preco, categoria);
+                }
+
+                String parteEmPromocao = partes[5];
+                String[] propriedadeEValorEmPromocao = parteEmPromocao.split(":");
+                String valorEmPromocao = propriedadeEValorEmPromocao[1].trim();
+                boolean emPromocao = Boolean.parseBoolean(valorEmPromocao);
+                if (emPromocao) {
+                    String partePrecoDesconto = partes[6];
+                    String[] propriedadeEValorPrecoDesconto = partePreco.split(":");
+                    String valorPrecoDesconto = propriedadeEValorPrecoDesconto[1].trim();
+                    double precoDesconto = Double.parseDouble(valorPrecoDesconto);
+                    item.setPromocao(precoDesconto);
+                }
+
+                itens[i] = item;
+
+
             } else {
                 IO.println("Arquivo com extensão inválida: " + nomeArquivo);
             }
