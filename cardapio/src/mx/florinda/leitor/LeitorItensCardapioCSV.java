@@ -4,14 +4,14 @@ import mx.florinda.modelo.CategoriaCardapio;
 import mx.florinda.modelo.ItemCardapio;
 import mx.florinda.modelo.isento.ItemCardapioIsento;
 
-import java.io.IO;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class LeitorItensCardapioCSV {
+public class LeitorItensCardapioCSV implements LeitorItensCardapio{
 
-    public ItemCardapio[] processaCSV(String nomeArquivo) throws IOException {
+    @Override
+    public ItemCardapio[] processaArquivo(String nomeArquivo) throws IOException {
         Path arquivo = Path.of(nomeArquivo);
         String conteudoDoArquivo = Files.readString(arquivo);
         String[] linhasArquivo = conteudoDoArquivo.split("\n");
