@@ -1,7 +1,7 @@
 package mx.florinda.modelo;
 
-import mx.florinda.leitor.LeitorItensCardapioCSV;
-import mx.florinda.leitor.LeitorItensCardapioJSON;
+import mx.florinda.leitor.FabricaLeitorItensCardapio;
+import mx.florinda.leitor.LeitorItensCardapio;
 
 import java.io.IO;
 import java.io.IOException;
@@ -12,25 +12,18 @@ public class Cardapio {
 
     public Cardapio(String nomeArquivo) throws IOException {
 
-            if (nomeArquivo.endsWith(".csv")) {
+        FabricaLeitorItensCardapio fabricaLeitor = new FabricaLeitorItensCardapio();
+        LeitorItensCardapio leitor = fabricaLeitor.criaLeitor(nomeArquivo);
 
-                LeitorItensCardapioCSV leitorCSV = new LeitorItensCardapioCSV();
-                itens = leitorCSV.processaCSV(nomeArquivo);
-
-            } else if (nomeArquivo.endsWith(".json")) {
-
-                LeitorItensCardapioJSON leitorJSON = new LeitorItensCardapioJSON();
-                itens = leitorJSON.processaJSON(nomeArquivo);
-
-            } else {
-
-                itens = new ItemCardapio[0];
-                IO.println("Arquivo com extensão inválida: " + nomeArquivo);
-
-            }
+        if(leitor !=null){
+        itens = leitor.processaArquivo(nomeArquivo);
+        }else{
+            IO.println("A extensão do arquivo arquivo é inválida: " + nomeArquivo);
+            itens = new ItemCardapio[0];
         }
+    }
 
-    public double getSomaDosPrecos () {
+    public double getSomaDosPrecos() {
         double totalDePrecos = 0.0;
         for (ItemCardapio item : itens) {
             totalDePrecos += item.getPreco();
@@ -38,7 +31,7 @@ public class Cardapio {
         return totalDePrecos;
     }
 
-    public int getTotalDeItensEmPromocao () {
+    public int getTotalDeItensEmPromocao() {
         int totalItensEmPromocao = 0;
         for (ItemCardapio item : itens) {
             if (item.isEmPromocao()) {
@@ -48,7 +41,7 @@ public class Cardapio {
         return totalItensEmPromocao;
     }
 
-    public double getPrimeiroPrecoMaiorQueLimite ( double precoLimite){
+    public double getPrimeiroPrecoMaiorQueLimite(double precoLimite) {
         double precoMaiorQueLimite = -1.0;
         for (ItemCardapio item : itens) {
             if (item.getPreco() > precoLimite) {
@@ -59,11 +52,11 @@ public class Cardapio {
         return precoMaiorQueLimite;
     }
 
-    public ItemCardapio getItemPorId ( long idSelecionado){
+    public ItemCardapio getItemPorId(long idSelecionado) {
         return itens[((int) idSelecionado) - 1];
     }
 
-    public ItemCardapio[] getItens () {
+    public ItemCardapio[] getItens() {
         return itens;
     }
 
