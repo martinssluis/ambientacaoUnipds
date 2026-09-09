@@ -16,7 +16,7 @@ public class Cardapio {
         LeitorItensCardapio leitor = fabricaLeitor.criaLeitor(nomeArquivo);
 
         if(leitor !=null){
-        itens = leitor.processaArquivo(nomeArquivo);
+        itens = leitor.processaArquivo();
         }else{
             IO.println("A extensão do arquivo arquivo é inválida: " + nomeArquivo);
             itens = new ItemCardapio[0];
