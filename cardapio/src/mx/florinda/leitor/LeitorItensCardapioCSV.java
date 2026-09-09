@@ -6,13 +6,15 @@ import mx.florinda.modelo.isento.ItemCardapioIsento;
 
 public class LeitorItensCardapioCSV extends LeitorItensCardapioBase {
 
+    private static final String SEPARADOR = ";";
+
     public LeitorItensCardapioCSV(String nomeArquivo) {
         super(nomeArquivo);
     }
 
     @Override
     protected ItemCardapio processaLinha(String linha) {
-        String[] partes = linha.split(";");
+        String[] partes = linha.split(SEPARADOR);
         long id = Long.parseLong(partes[0]);
         String nome = partes[1];
         String descricao = partes[2];
