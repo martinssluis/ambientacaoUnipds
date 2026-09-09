@@ -6,6 +6,6 @@ import java.io.IOException;
 
 public interface LeitorItensCardapio {
 
-    ItemCardapio[] processaArquivo(String nomeArquivo) throws IOException;
+    ItemCardapio[] processaArquivo() throws IOException;
 
 }
