@@ -8,11 +8,11 @@ public class FabricaLeitorItensCardapio {
 
         if (nomeArquivo.endsWith(".csv")) {
 
-            leitor = new LeitorItensCardapioCSV();
+            leitor = new LeitorItensCardapioCSV(nomeArquivo);
 
         } else if (nomeArquivo.endsWith(".json")) {
 
-            leitor = new LeitorItensCardapioJSON();
+            leitor = new LeitorItensCardapioJSON(nomeArquivo);
 
         }
         return leitor;
