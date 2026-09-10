@@ -1,11 +1,12 @@
 import mx.florinda.modelo.Cardapio;
 import mx.florinda.modelo.ItemCardapio;
 
-void main() throws IOException{
+void main() {
 
-    String nomeArquivo = IO.readln("Digite um nome de arquivo de itens de cardapio: ");
+    String nomeArquivo = IO.readln("Digite um nome de arquivo de itens de cardápio: ");
 
     Cardapio cardapio = new Cardapio(nomeArquivo);
+
     String linha = IO.readln("Digite um id de um item de cardápio: ");
     long idSelecionado = Long.parseLong(linha);
 

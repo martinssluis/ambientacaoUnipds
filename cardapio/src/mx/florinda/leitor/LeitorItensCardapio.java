@@ -2,11 +2,9 @@ package mx.florinda.leitor;
 
 import mx.florinda.modelo.ItemCardapio;
 
-import java.io.IOException;
-
 public interface LeitorItensCardapio {
 
-    ItemCardapio[] processaArquivo() throws IOException;
+    ItemCardapio[] processaArquivo();
 
     static LeitorItensCardapio criaLeitor(String nomeArquivo){
 
@@ -18,7 +16,7 @@ public interface LeitorItensCardapio {
 
         } else if (nomeArquivo.endsWith(".json")) {
 
-            leitor = new LeitorItensCardapioJSON(nomeArquivo);
+            leitor = new LeitorItensCardapioGSON(nomeArquivo);
 
         }
         return leitor;
